@@ -7,24 +7,24 @@ export default class ReactAccessContext extends Component {
     children: PropTypes.node.isRequired,
     userPermissions: PropTypes.arrayOf(PropTypes.string),
     validator: PropTypes.func,
-  }
+  };
 
   render() {
     return this.props.children;
   }
 
   getChildContext = () => ({
-    authorizeAccess: this.authorizeAccess
-  })
+    authorizeAccess: this.authorizeAccess,
+  });
 
   authorizeAccess = (requiredPermissions, requireAll) => {
     const {userPermissions, validator} = this.props;
     return validator(userPermissions, requiredPermissions, requireAll);
-  }
+  };
 
   static childContextTypes = {
     authorizeAccess: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     validator(userPermissions, requiredPermissions, requireAll) {
@@ -40,5 +40,5 @@ export default class ReactAccessContext extends Component {
       }
     },
     userPermissions: [],
-  }
+  };
 }

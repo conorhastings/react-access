@@ -7,14 +7,19 @@ export default class RequireForAccess extends Component {
     permissions: PropTypes.arrayOf(PropTypes.string),
     invalidAccessComponent: PropTypes.node,
     requireAll: PropTypes.bool,
-  }
+  };
 
   static contextTypes = {
     authorizeAccess: PropTypes.func,
-  }
+  };
 
   render() {
-    const {children, permissions, invalidAccessComponent, requireAll} = this.props;
+    const {
+      children,
+      permissions,
+      invalidAccessComponent,
+      requireAll,
+    } = this.props;
     const {authorizeAccess} = this.context;
     const pass = authorizeAccess(permissions, requireAll);
 
@@ -24,5 +29,5 @@ export default class RequireForAccess extends Component {
   static defaultProps = {
     invalidAccessComponent: null,
     requireAll: false,
-  }
+  };
 }
