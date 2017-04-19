@@ -6,12 +6,13 @@ const globals = require('../test/setup/.globals');
 // these are intended for internal use only, and not exposed for gulp tasks
 // hence, the _ prefix
 function _mocha() {
-  return gulp.src(['test/setup/node.js', 'test/unit/*.js'], {read: false})
-    .pipe(plugins.mocha({
+  return gulp.src(['test/setup/node.js', 'test/unit/*.js'], {read: false}).pipe(
+    plugins.mocha({
       reporter: 'dot',
       globals: Object.keys(globals),
-      ignoreLeaks: false
-    }));
+      ignoreLeaks: false,
+    })
+  );
 }
 
 function _registerBabel() {
@@ -25,5 +26,5 @@ function mocha() {
 }
 
 module.exports = {
-  mocha
-}
+  mocha,
+};

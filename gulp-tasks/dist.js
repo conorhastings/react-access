@@ -12,24 +12,27 @@ const destinationFolder = path.dirname(mainFile);
 const exportFileName = path.basename(mainFile, path.extname(mainFile));
 
 function build() {
-  return gulp.src(path.join('src', 'index.js'))
-    .pipe(webpackStream({
-      output: {
-        filename: `${exportFileName}.js`,
-        libraryTarget: 'umd',
-        library: 'ReactAccess'
-      },
-      // externalize the `react` module, which should be a peerDep of the host module/app
-      externals: {
-        react: true,
-      },
-      module: {
-        loaders: [
-          {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
-        ]
-      },
-      devtool: 'source-map'
-    }))
+  return gulp
+    .src(path.join('src', 'index.js'))
+    .pipe(
+      webpackStream({
+        output: {
+          filename: `${exportFileName}.js`,
+          libraryTarget: 'umd',
+          library: 'ReactAccess',
+        },
+        // externalize the `react` module, which should be a peerDep of the host module/app
+        externals: {
+          react: true,
+        },
+        module: {
+          loaders: [
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+          ],
+        },
+        devtool: 'source-map',
+      })
+    )
     .pipe(gulp.dest(destinationFolder))
     .pipe(plugins.filter(['**', '!**/*.js.map']))
     .pipe(plugins.rename(`${exportFileName}.min.js`))
@@ -46,4 +49,4 @@ function clean(done) {
 module.exports = {
   build,
   clean,
-}
+};
