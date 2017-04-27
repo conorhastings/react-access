@@ -5,7 +5,9 @@
   "main": "dist/react-access.js",
   "scripts": {
     "test": "gulp test",
-    "prepublish": "in-publish && gulp test && gulp build || not-in-publish"
+    "prepublish": "in-publish && gulp test && gulp build || not-in-publish",
+    "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "eslint": "gulp lint"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "babel-core": "6.14.0",
+    "babel-eslint": "7.2.2",
     "babel-loader": "6.2.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-react-jsx": "^6.23.0",
@@ -47,16 +50,18 @@
     "chai": "3.5.0",
     "del": "2.2.2",
     "enzyme": "^2.8.0",
+    "eslint": "3.19.0",
+    "eslint-config-prettier": "1.7.0",
     "gulp": "3.9.1",
+    "gulp-eslint": "3.0.1",
     "gulp-filter": "4.0.0",
-    "gulp-load-plugins": "1.2.4",
+    "gulp-load-plugins": "1.5.0",
     "gulp-mocha": "3.0.1",
     "gulp-rename": "1.2.2",
     "gulp-sourcemaps": "1.6.0",
     "gulp-uglify": "2.0.0",
     "in-publish": "2.0.0",
     "prettier": "1.1.0",
-    "prettier-eslint": "5.1.0",
     "prop-types": "15.5",
     "react": "15.5",
     "react-addons-test-utils": "15.5",
